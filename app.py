@@ -49,25 +49,34 @@ def result():
       #get the int for max length
       pass_len_max = request.form["pass_len_max"]
       pass_len_max = int(pass_len_max)
-
+            
       #get if lowercase is allowed
-      isLower = request.form["pass_lowercase"]
-      if (isLower == "on"):
-         isLower = True
+      if ("pass_lowercase" in request.form):
+         isLower = request.form["pass_lowercase"]
+         if (isLower == "on"):
+            isLower = True
+         else:
+            isLower = False
       else:
          isLower = False
 
       #get if uppercase is allowed
-      isUpper = request.form["pass_uppercase"]
-      if (isUpper == "on"):
-         isUpper = True
+      if ("pass_uppercase" in request.form):
+         isUpper = request.form["pass_uppercase"]
+         if (isUpper == "on"):
+            isUpper = True
+         else:
+            isUpper = False
       else:
          isUpper = False
 
       #get if numbers are allowed
-      isNumber = request.form["pass_number"]
-      if (isNumber == "on"):
-         isNumber = True
+      if ("pass_number" in request.form):
+         isNumber = request.form["pass_number"]
+         if (isNumber == "on"):
+            isNumber = True
+         else:
+            isNumber = False
       else:
          isNumber = False
 
@@ -78,7 +87,8 @@ def result():
 
       password = generate_password(pass_len_min, pass_len_max, isLower, isUpper, isNumber, symbol_list)
       
-      return render_template("result.html", password = password)
+      result = request.form
+      return render_template("result.html", password = password, result=result)
 
 if __name__ == '__main__':
      app.debug = True
