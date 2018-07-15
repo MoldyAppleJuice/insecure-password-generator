@@ -1,7 +1,7 @@
 <html>
    <body>
    
-      <form action = "http://localhost:5000/result" method = "POST">
+      <form action="{{url_for('result')}}" method = "POST">
          <p>Minimum password length <input type = "number" name = "pass_len_min" min="1" required/></p>
          <p>Maximum password length <input type = "number" name = "pass_len_max" max="99" required/></p>
          <p>Lowercase allowed? <input type = "checkbox" name = "pass_lowercase" checked/></p>
