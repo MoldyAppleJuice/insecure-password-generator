@@ -8,16 +8,14 @@ def student():
    return render_template('student.html')
 
 def get_words():
-   text_file = open("static/words.txt", "r")
    words = ""
 
-   for x in text_file:
-      words += re.sub('[^a-zA-Z\n ]+', '', x)
-   
-   all_words = words.split()
-   text_file.close()
+   with open("static/words.txt", encoding="utf-8", errors="surrogateescape") as f:
+      contents = f.read()
+      words += re.sub('[^a-zA-Z\n ]+', '', contents)
 
-   return all_words
+   all_words = words.split()
+   return(all_words)
 
 def generate_password(minlen, maxlen, isLower, isUpper, isNumber, symbol_list):
    words = get_words()
