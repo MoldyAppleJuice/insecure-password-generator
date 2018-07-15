@@ -8,7 +8,7 @@ def student():
    return render_template('student.html')
 
 def get_words():
-   text_file = open("static\words.txt", "r")
+   text_file = open("static/words.txt", "r")
    words = ""
 
    for x in text_file:
