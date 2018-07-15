@@ -1,13 +1,26 @@
 from flask import Flask, render_template, request
 from random import randint
+import re
 app = Flask(__name__)
 
 @app.route('/')
 def student():
    return render_template('student.html')
 
+def get_words():
+   text_file = open("static\words.txt", "r")
+   words = ""
+
+   for x in text_file:
+      words += re.sub('[^a-zA-Z\n ]+', '', x)
+   
+   all_words = words.split()
+   text_file.close()
+
+   return all_words
+
 def generate_password(minlen, maxlen, isLower, isUpper, isNumber, symbol_list):
-   words = ["one", "two", "word", "doritos"]
+   words = get_words()
    pwd = ""
    
    if (isNumber and len(symbol_list) > 0):
